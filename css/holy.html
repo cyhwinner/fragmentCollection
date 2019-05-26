@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.content{
+			padding: 0 100px;
+			height: 100px;
+		}
+		.left, .right{
+			float: left;
+			width: 100px;
+			height: inherit;
+			background-color: red;
+		}
+		.center{
+			float: left;
+			background: black;
+			width: 100%;
+			height: inherit;
+		}
+		.left{
+			margin-left: -100%;
+			position: relative;
+			left: -100px;
+		}
+		.right{
+			position: relative;
+			left: 100px;
+			margin-left: -100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="center"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+	</div>
+</body>
+</html>

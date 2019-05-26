@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fade out by css</title>
+	<style>
+		.fade-out-siblins{
+			--gutter: 2.5em;
+			--gradient-blue: #a6c0fe;
+			pointer-events: none;
+			background: var(--gradient-blue);
+			text-align: center;
+			grid-gap: var(--gutter);
+			padding: var(--gutter);
+			display: grid;
+			margin: 2em 0;
+		}
+		.fade-out-siblins > * {
+			box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			background: #fff;
+			padding: 2em 1em;
+			cursor: pointer;
+			pointer-events: auto;
+			transition: 0.3s opacity, 0.3s transform;
+		}
+		.fade-out-siblins:hover > * {
+			opacity: 0.4;
+		}
+		.fade-out-siblins:hover > *:hover{
+			transform: scale(1.1);
+			opacity: 1
+		}
+		@media (min-width: 40em) {
+			.fade-out-siblins{
+				grid-template-columns: repeat(3, 1fr);
+			}
+			.fade-out-siblins > * {
+				padding: 4em 1em;
+			}
+		}
+	</style>
+</head>
+<body>
+	<article class="fade-out-siblins">
+		<button>Card 1</button>
+		<button>Card 2</button>
+		<button>Card 3</button>
+	</article>
+</body>
+</html>

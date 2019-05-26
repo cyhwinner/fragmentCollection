@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>checkboxTransition</title>
+	<style>
+		.checkbox input{
+			position: absolute;
+			opacity: 0;
+		}
+		.checkbox .overlay{		
+			--color: #F39C12;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 24px;
+			width: 24px;
+			background-color: transparent;
+			border-radius: 8px;
+			border: 2px solid var(--color);
+			transform: rotate(-90deg);
+			transition: all 0.3s;
+		}
+		.checkbox .overlay .icon {
+			color:white;
+			display: none;
+		}
+		.checkbox input:checked~ .overlay {
+			--color: #F39C12;
+			transform: rotate(0deg);
+			opacity: 1;
+			background-color: var(--color);
+		}
+		.checkbox input:checked~ .overlay .icon{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<label class="checkbox">
+		<input type="checkbox">
+		<span class="overlay">
+			<svg 
+				class="icon"
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+					<polyline points="20 6 9 17 4 12">
+				</svg>
+		</span>
+	</label>
+	
+</body>
+</html>

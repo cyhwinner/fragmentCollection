@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>checkboxStroke</title>
+	<style>
+		.checkbox input{
+			position: absolute;
+			opacity: 0;
+		}
+		.checkbox .overlay{		
+			--color: #F39C12;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 24px;
+			width: 24px;
+			background-color: var(--color);
+			border-radius: 8px;
+			border: 2px solid var(--color);
+			transition: all 0.3s;
+		}
+		.checkbox .overlay .icon {
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<label class="checkbox">
+		<input type="checkbox">
+		<span class="overlay">
+			<svg 
+				class="icon"
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-dasharray="24"
+				stroke-dashoffset="24">
+					<polyline points="20 6 9 17 4 12">
+				</svg>
+		</span>
+	</label>
+	
+</body>
+<script>
+	const animate = (duration, animation) => {
+		const beginTime = Date.now();
+		const frame = () => {
+			const currentTime = Date.now();
+			const elapsed = currentTime - beginTime;
+			if (elapsed < duration) {
+				const progress = elapsed / duration;
+				console.log(progress)
+				animation(progress);
+				window.requestAnimationFrame(frame);
+			} else {
+				const progress = 1;
+				animation(1);
+			}
+		};
+		requestAnimationFrame(frame);
+	}
+
+	const checkboxes = document.querySelectorAll('.checkbox');
+	checkboxes.forEach((checkbox) => {
+		const input = checkbox.children[0];
+		const overlay = checkbox.children[1];
+		const icon = overlay.children[0];
+
+		input.addEventListener('change', () => {
+			if (input.checked) {
+				overlay.classList.add('checked');
+				icon.classList.add('checked');
+				animate(250, (progress) => {
+					icon.setAttribute('stroke-dashoffset', (1 - progress) * -24);
+				})
+			} else {
+				overlay.classList.remove('checked');
+				icon.classList.remove('checked');
+				animate(250, (progress) => {
+					icon.setAttribute('stroke-dashoffset', progress * -24);
+				})
+			}
+		})
+	})
+
+</script>
+</html>
