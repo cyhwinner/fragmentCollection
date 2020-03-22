@@ -68,19 +68,15 @@ class Button extends HTMLElement {
     })
   }
   get label() {
-  	console.log(3333)
   	return this.getAttribute('label');
   }
   set label(value) {
-  	console.log(2222)
   	this.setAttribute('label', value);
   }
   static get observedAttributes() {
-  	console.log(11)
   	return ['label']
   }
   attributeChangedCallback(name, oldVal, newVal) {
-  	console.log(22)
   	this.render();
   }
   render() {
@@ -96,7 +92,7 @@ template.innerHTML = `
     :host {
       font-family: sans-serif;
     }
-	.dropdown.open .dropdown-list {
+	  .dropdown.open .dropdown-list {
       display: flex;
       flex-direction: column;
     }
@@ -169,9 +165,9 @@ class Dropdown extends HTMLElement {
 		this.$dropdown = this._sR.querySelector('.dropdown');
 		this.$dropdownList = this._sR.querySelector('.dropdown-list');
 		this.$button.addEventListener(
-	      'onClick',
-	      this.toggleOpen.bind(this)
-	    );
+      'onClick',
+      this.toggleOpen.bind(this)
+    );
 	}
 	toggleOpen(event) {
 	    this.open = !this.open;
@@ -215,23 +211,23 @@ class Dropdown extends HTMLElement {
 	    }
 		this.$dropdownList.innerHTML = '';
 
-	    Object.keys(this.options || {}).forEach(key => {
-	      let option = this.options[key];
-	      let $option = document.createElement('li');
-	      $option.innerHTML = option.label;
-	      if (this.option && this.option === key) {
-	        $option.classList.add('selected');
-	      }
-	      $option.addEventListener('click', () => {
-	        this.option = key;
+    Object.keys(this.options || {}).forEach(key => {
+      let option = this.options[key];
+      let $option = document.createElement('li');
+      $option.innerHTML = option.label;
+      if (this.option && this.option === key) {
+        $option.classList.add('selected');
+      }
+      $option.addEventListener('click', () => {
+        this.option = key;
 
-	        this.toggleOpen();
+        this.toggleOpen();
 
-	        this.render();
-	      });
+        this.render();
+      });
 
-	      this.$dropdownList.appendChild($option);
-	    });
+      this.$dropdownList.appendChild($option);
+    });
 	}
 	
 }
