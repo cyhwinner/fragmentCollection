@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  open dev tool
+</body>
+<script>
+  const SpeechRecognition = webkitSpeechRecognition
+  let recognition = new SpeechRecognition()
+  recognition.lang = 'en-US'
+  recognition.continuous = true
+  recognition.interimResults = false
+  recognition.addEventListener('result', e => {
+    console.log(e.results[0][0].transcript)
+  })
+  recognition.addEventListener("start", () => {
+    console.log(`Start listening to the user.`);
+  });
+
+  recognition.addEventListener("error", event => {
+    console.log(`Woops! Something went wrong: ${event.error}`);
+  });
+
+  recognition.addEventListener("end", () => {
+    console.log(`Stop listening to the user.`);
+    recognition.start();
+  });
+  recognition.start()
+</script>
+</html>
